@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TJProfileController:YBBaseViewController {
+class YBProfileController:YBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

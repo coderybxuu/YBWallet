@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TJMessageController: YBBaseViewController {
+class YBMessageController: YBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

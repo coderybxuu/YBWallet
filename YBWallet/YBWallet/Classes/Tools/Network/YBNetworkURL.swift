@@ -8,7 +8,7 @@
 
 import Foundation
 
-let baseUrl = "http://106.75.59.207:8899/"
+let baseUrl = "11"
 
 //以太币
 let timestamp = "timestamp"
