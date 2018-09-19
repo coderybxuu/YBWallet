@@ -1,0 +1,8 @@
+
+[
+ {"vcName":"YBWalletController", "title":"钱包","imageName":"btn_home"},
+ {"vcName":"YBMessageController","title":"消息","imageName":"btn_live"},
+ {"vcName":"YBProfileController","title":"个人","imageName":"btn_user"}
+]
+
+
