@@ -18,20 +18,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate,Mnemonicable{
         
         //网络监控
         YBReachability.shared().monitorNet()
-        //监测本地是否生成了助记词
+        //监测本地生成了钱包助记词
         verification()
         window = UIWindow()
-        window?.rootViewController = YBLoginController()
+        window?.rootViewController = YBWelcomController()
         window?.makeKeyAndVisible()
         UIApplication.shared.statusBarStyle = .lightContent
         
-        //测试
-        test()
         return true
     }
+}
+
+extension AppDelegate {
     
-    func test() {
-        
+    static var currentDelegate: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
     }
+    
+    static var currentWindow: UIWindow {
+        return currentDelegate.window!
+    }
+    
 }
 

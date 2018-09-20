@@ -29,7 +29,7 @@ class YBWalletController: YBBaseViewController , YBTableViewable{
 //UI
 extension YBWalletController{
     func setupUI() {
-        setNavigatition(rightImageName: "btn_live")
+        setNavigatition(rightImageName: "sao")
         view.addSubview(walletTableView)
     }
 }

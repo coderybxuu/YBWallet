@@ -12,6 +12,8 @@ class YBProfileController:YBBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
 }

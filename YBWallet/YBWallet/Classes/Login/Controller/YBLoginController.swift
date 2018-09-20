@@ -28,8 +28,15 @@ class YBLoginController: YBBaseViewController {
 
 extension YBLoginController : YBloginViewAble{
     func login() {
-        
+        //验证账号
         guard let pwd = self.loginView.pwdTextField.textField.text, let account = self.loginView.accountTextField.textField.text,!(pwd.isEmpty || account.isEmpty) else {
+            
+            //切换主控制器
+            let tabBarController = YBMainViewController()
+            let transtition = CATransition.yb_getTransition()
+            AppDelegate.currentWindow.layer.add(transtition, forKey: "animation")
+            AppDelegate.currentWindow.rootViewController = tabBarController
+            
             window?.makeToast("输入有误")
             return
         }

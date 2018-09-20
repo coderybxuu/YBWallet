@@ -14,17 +14,10 @@ protocol YBloginViewAble {
     func registered()
 }
 
-class YBLoginView: UIView {
+class YBLoginView: YBBaseView {
     
     ///代理
     var delegate: YBloginViewAble?
-    
-    ///视图模型
-    var viewModel : YBLoginViewModel? {
-        didSet{
-            
-        }
-    }
     
     ///logo
     fileprivate lazy var logoView : UIImageView = {
@@ -60,14 +53,6 @@ class YBLoginView: UIView {
         pwdTextField.textField.keyboardType = .asciiCapable
         pwdTextField.textField.isSecureTextEntry = true
         return pwdTextField
-    }()
-    
-    ///背景
-    fileprivate lazy var  bgImgView : UIImageView = {
-        let bgImgView = UIImageView()
-        bgImgView.image = UIImage.yb_blurry(UIImage(named: "bg")!, level: 0.7)
-        bgImgView.isUserInteractionEnabled = true
-        return bgImgView
     }()
     
     ///登录按钮
@@ -106,7 +91,6 @@ class YBLoginView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(bgImgView)
         bgImgView.addSubview(logoView)
         bgImgView.addSubview(accountTextField)
         bgImgView.addSubview(pwdTextField)
@@ -122,10 +106,6 @@ class YBLoginView: UIView {
     //布局
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        bgImgView.snp.makeConstraints { (make) in
-            make.top.bottom.left.right.equalToSuperview()
-        }
         
         logoView.snp.makeConstraints { (make) in
             make.size.equalTo(CGSize(width: current_w(width: 60), height: current_w(width: 60)))

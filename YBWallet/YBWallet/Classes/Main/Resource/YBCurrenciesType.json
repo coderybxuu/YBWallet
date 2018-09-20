@@ -1,4 +1,4 @@
  [
-  {"typeTitle" : "ETH", "iconView" : "btn_user"},
-  {"typeTitle" : "BTC", "iconView" : "btn_user"}
+  {"typeTitle" : "ETH", "iconView" : "ET"},
+  {"typeTitle" : "BTC", "iconView" : "BT"}
  ]
