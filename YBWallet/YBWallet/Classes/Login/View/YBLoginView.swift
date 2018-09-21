@@ -57,12 +57,7 @@ class YBLoginView: YBBaseView {
     
     ///登录按钮
     fileprivate lazy var loginBtn : UIButton = {
-        let loginBtn = UIButton()
-        loginBtn.backgroundColor = UIColor(r: 83, g: 178, b: 233)
-        loginBtn.setTitle("登录", for: .normal)
-        loginBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        loginBtn.layer.cornerRadius = 3
-        loginBtn.layer.masksToBounds = true
+        let loginBtn = UIButton(title: "登录")
         loginBtn.addTarget(self, action: #selector(login), for: .touchUpInside)
         return loginBtn
     }()

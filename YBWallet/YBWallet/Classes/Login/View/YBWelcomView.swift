@@ -20,24 +20,14 @@ class YBWelcomView: YBBaseView {
     var delegate: YBWelcomViewable?
     ///创建新钱包
     fileprivate lazy var createNewWalletBtn : UIButton = {
-        let createNewWalletBtn = UIButton()
-        createNewWalletBtn.backgroundColor = UIColor(r: 83, g: 178, b: 233)
-        createNewWalletBtn.setTitle("创建新钱包", for: .normal)
-        createNewWalletBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        createNewWalletBtn.layer.cornerRadius = 3
-        createNewWalletBtn.layer.masksToBounds = true
+        let createNewWalletBtn = UIButton(title: "创建新钱包")
         createNewWalletBtn.addTarget(self, action: #selector(createNewWalle), for: .touchUpInside)
         return createNewWalletBtn
     }()
     
     ///导入新钱包
     fileprivate lazy var importNewWalletBtn : UIButton = {
-        let importNewWalletBtn = UIButton()
-        importNewWalletBtn.backgroundColor = UIColor(r: 83, g: 178, b: 233)
-        importNewWalletBtn.setTitle("导入新钱包", for: .normal)
-        importNewWalletBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        importNewWalletBtn.layer.cornerRadius = 3
-        importNewWalletBtn.layer.masksToBounds = true
+        let importNewWalletBtn = UIButton(title: "导入新钱包")
         importNewWalletBtn.addTarget(self, action: #selector(importNewWallet), for: .touchUpInside)
         return importNewWalletBtn
     }()

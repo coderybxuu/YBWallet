@@ -8,8 +8,9 @@
 
 import UIKit
 
-class YBMainViewController: UITabBarController {
-
+class YBMainViewController: UITabBarController{
+    var closeAnimating : Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //通过加载json文件创建控制器（为以后加载服务器数据做铺垫）
@@ -50,3 +51,14 @@ extension YBMainViewController{
         addChildViewController(childNav)
     }
 }
+
+//MARK:-  =============UITabBarControllerDelegate===============
+//extension YBMainViewController{
+//    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+//        let navigationController = YBCustomNavigationController()
+//
+//        if navigationController.topViewController {
+//            <#code#>
+//        }
+//    }
+//}

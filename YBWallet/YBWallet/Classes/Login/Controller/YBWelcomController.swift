@@ -20,11 +20,21 @@ class YBWelcomController: YBBaseViewController {
         super.viewDidLoad()
         view.addSubview(welcomView)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 extension YBWelcomController : YBWelcomViewable{
     func createNewWalle() {
-        
+        navigationController?.pushViewController(YBCreatWalletController(), animated: true)
     }
     
     func importNewWallet() {

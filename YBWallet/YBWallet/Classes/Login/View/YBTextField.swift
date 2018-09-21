@@ -10,6 +10,7 @@ import UIKit
 
 class YBTextField: UIView,UITextFieldDelegate {
 
+    
     ///输入框
     lazy var textField : UITextField = {
         
@@ -42,8 +43,12 @@ class YBTextField: UIView,UITextFieldDelegate {
     var lineDefaultColor : UIColor?
     ///底部线条错误警告颜色(默认红色)
     var lineWarningColor : UIColor?
-    ///底部线条选中颜色(默认深绿色)
+    ///底部线条选中颜色(默认深蓝色)
     var lineSelectedColor : UIColor?
+    ///是否需要判断长度合格
+    var isSetMaxSetLength : Bool = true
+    ///是否需要设置左边的ICON
+    var isSetLeftIcon : Bool = true
     
     ///左侧图标
     fileprivate lazy var leftIcon : UIImageView = {
@@ -57,7 +62,7 @@ class YBTextField: UIView,UITextFieldDelegate {
     fileprivate lazy var headerPlaceLabel : UILabel = {
         let headerPlaceLabel = UILabel()
         headerPlaceLabel.backgroundColor = UIColor.clear
-        headerPlaceLabel.textColor = UIColor(r: 1, g: 183, b: 164)
+        headerPlaceLabel.textColor = kMainColor
         headerPlaceLabel.textAlignment = .left
         headerPlaceLabel.font = UIFont.systemFont(ofSize: current_w(width: 14))
         headerPlaceLabel.text = textField.placeholder
@@ -99,9 +104,9 @@ class YBTextField: UIView,UITextFieldDelegate {
         
         ///设置默认颜色
         textColor = UIColor(r: 85, g: 85, b: 85)
-        textLengthLabelColor = UIColor(r: 92, g: 94, b: 102)
+        textLengthLabelColor = kMainColor
         lineDefaultColor = UIColor.white
-        lineSelectedColor = UIColor(r: 1, g: 183, b: 164)
+        lineSelectedColor = kMainColor
         lineWarningColor = UIColor(r: 252, g: 57, b: 24)
         errorLableColor = UIColor(r: 252, g: 57, b: 24)
     }
@@ -115,16 +120,32 @@ class YBTextField: UIView,UITextFieldDelegate {
         super.layoutSubviews()
         addSubview(leftIcon)
         leftIcon.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: self.frame.size.height - 15, height: self.frame.size.height - 15))
+            ///三目snp报警告
+            if isSetLeftIcon{
+                make.size.equalTo(CGSize(width: self.frame.size.height - 15, height: self.frame.size.height - 15))
+            }else{make.size.equalTo(CGSize.zero)}
+            
             make.centerY.equalTo(self)
             make.left.equalTo(self)
         }
         
         addSubview(textField)
         textField.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: self.frame.size.width - leftIcon.frame.size.width - current_w(width: 8) - current_w(width: 40), height: self.frame.size.height))
+    
             make.centerY.equalTo(self)
-            make.left.equalTo(leftIcon.snp.right).offset(current_w(width: 8))
+            if isSetLeftIcon && isSetMaxSetLength{
+                make.size.equalTo(CGSize(width: self.frame.size.width - leftIcon.frame.size.width - current_w(width: 8) - current_w(width: 40), height: self.frame.size.height))
+                make.left.equalTo(leftIcon.snp.right).offset(current_w(width: 8))
+            }else if !isSetLeftIcon && isSetMaxSetLength{
+                make.size.equalTo(CGSize(width: self.frame.size.width - leftIcon.frame.size.width - current_w(width: 40), height: self.frame.size.height))
+                make.left.equalTo(leftIcon.snp.right)
+            }else if isSetLeftIcon && !isSetMaxSetLength{
+                make.size.equalTo(CGSize(width: self.frame.size.width - leftIcon.frame.size.width - current_w(width: 8), height: self.frame.size.height))
+                make.left.equalTo(leftIcon.snp.right)
+            }else if !isSetLeftIcon && !isSetMaxSetLength{
+                make.size.equalTo(CGSize(width: self.frame.size.width, height: self.frame.size.height))
+                make.left.equalTo(self.snp.left)
+            }
         }
         
         addSubview(headerPlaceLabel)
@@ -136,8 +157,13 @@ class YBTextField: UIView,UITextFieldDelegate {
         
         addSubview(lengthLabel)
         lengthLabel.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: current_w(width: 40), height: current_w(width: 15)))
-            make.left.equalTo(textField.snp.right)
+            
+            if isSetMaxSetLength{
+                 make.size.equalTo(CGSize(width: current_w(width: 40), height: current_w(width: 15)))
+            }else{
+                make.size.equalTo(CGSize.zero)
+            }
+            make.right.equalTo(self.snp.right)
             make.bottom.equalTo(textField.snp.bottom)
         }
         
@@ -162,32 +188,40 @@ extension YBTextField{
     @objc func textFieldEditingChanged(_ textField:UITextField) {
         
 //        guard let currentString: NSString = textField.text as NSString? else{return}
-        
         if textField.text == nil {
             textField.text = ""
         }
         let currentString: NSString = textField.text! as NSString
-        if currentString.length > maxLength {
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                self.errorLabel.alpha = 1.0
-                self.errorLabel.textColor = self.lineWarningColor
-                self.bottomLine.backgroundColor = self.lineWarningColor
-                self.lengthLabel.textColor = self.lineWarningColor
-                self.textField.textColor = self.lineWarningColor
-               
-            }, completion: nil)
-        }else{
+        if isSetMaxSetLength{
             
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
-                self.errorLabel.alpha = 0.0
-//                self.errorLabel.textColor = self.lineWarningColor
-                self.bottomLine.backgroundColor = self.lineSelectedColor
-                self.lengthLabel.textColor = self.textLengthLabelColor
-                self.textField.textColor = self.textColor
+            if currentString.length > maxLength {
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                    self.errorLabel.alpha = 1.0
+                    self.errorLabel.textColor = self.lineWarningColor
+                    self.bottomLine.backgroundColor = self.lineWarningColor
+                    self.lengthLabel.textColor = self.lineWarningColor
+                    self.textField.textColor = self.lineWarningColor
+                    
+                }, completion: nil)
+            }else{
                 
-            }, completion: nil)
+                UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+                    self.errorLabel.alpha = 0.0
+                    //                self.errorLabel.textColor = self.lineWarningColor
+                    self.bottomLine.backgroundColor = self.lineSelectedColor
+                    self.lengthLabel.textColor = self.textLengthLabelColor
+                    self.textField.textColor = self.textColor
+                    
+                }, completion: nil)
+            }
+            lengthLabel.text = "\((textField.text! as NSString).length)/\(maxLength)"
+        }else{
+            if currentString.length > 0{
+                self.textField.textColor = kMainColor
+            }else{
+                self.textField.textColor = self.textColor
+            }
         }
-        lengthLabel.text = "\((textField.text! as NSString).length)/\(maxLength)"
     }
     
     func setPlaceHolderLableHidden(isHidden:Bool) {
