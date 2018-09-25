@@ -38,3 +38,26 @@ extension Mnemonicable where Self : AppDelegate{
         }
     }
 }
+
+protocol YBCreatWalletable {
+    
+}
+
+extension YBCreatWalletable{
+    
+    func creatWallet(_ passphrase:String,name:String)  {
+        let mnemonic = Crypto.generateMnemonic(strength: 128)
+        let hdWallet = HDWallet(mnemonic: mnemonic, passphrase: passphrase)
+        let privateKey_HD = hdWallet.getKey(at: Coin.ethereum.derivationPath(at: 0))
+        let privateKey = privateKey_HD.description
+        let address = privateKey_HD.publicKey(for: .ethereum).address.description
+        let walletModel = YBSQWalletListModel.init()
+        walletModel.walletName = name
+        walletModel.walletIsBackup = false
+        walletModel.walletPrivatekey = privateKey
+        walletModel.walletMnemonic = mnemonic
+        walletModel.walletAddress = address
+        YBSQLiteWalletListsManager.default.insert(item: walletModel)
+    }
+    
+}

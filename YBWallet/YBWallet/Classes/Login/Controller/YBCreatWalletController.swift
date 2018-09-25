@@ -22,7 +22,7 @@ class YBCreatWalletController: YBBaseViewController {
 
 }
 
-extension YBCreatWalletController:YBCreatWalletViewable{
+extension YBCreatWalletController:YBCreatWalletViewable,YBCreatWalletable{
     func createNewWalle() {
          guard let walletName = self.creatWalletView.walletNameTextField.textField.text,
                let pwd = self.creatWalletView.pwdTextField.textField.text,
@@ -31,14 +31,20 @@ extension YBCreatWalletController:YBCreatWalletViewable{
               window?.makeToast("输入有误")
               return
         }
-        
-        //判断钱包是否存在（暂时不判断）
-        
         if pwd != rePwd {
             window?.makeToast("两次密码输入不一致")
             return
         }
         
-        //创建钱包
+        //判断钱包是否存在（）
+        if let _ = YBSQLiteWalletListsManager.default.search(name: walletName)
+        {
+                window?.makeToast("此钱包已经存在"); return
+            
+        }else{
+            //创建钱包
+            creatWallet(pwd, name: walletName)
+            navigationController?.pushViewController(YBBackupController(), animated: true)
+        }
     }
 }
