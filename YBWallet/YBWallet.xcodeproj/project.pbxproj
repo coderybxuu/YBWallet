@@ -75,12 +75,8 @@
 		194EABBE215349E900ED158B /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EABBD215349E900ED158B /* UIButton-Extension.swift */; };
 		194EABC021539D4B00ED158B /* YBCreatWalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EABBF21539D4B00ED158B /* YBCreatWalletController.swift */; };
 		194EABC221539E3100ED158B /* YBCreatWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194EABC121539E3100ED158B /* YBCreatWalletView.swift */; };
-		1964D5A8215B2959000E14D9 /* YBSQLiteDataBaseTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964D5A7215B2959000E14D9 /* YBSQLiteDataBaseTool.swift */; };
-		1964D5AC215B2BCE000E14D9 /* YBSQLPropertyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964D5A9215B2BCD000E14D9 /* YBSQLPropertyModel.swift */; };
-		1964D5AD215B2BCE000E14D9 /* YBSQLMirrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964D5AA215B2BCE000E14D9 /* YBSQLMirrorModel.swift */; };
-		1964D5AE215B2BCE000E14D9 /* YBSQLiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964D5AB215B2BCE000E14D9 /* YBSQLiteModel.swift */; };
+		1964D5B0215B30AF000E14D9 /* YBWalletSQManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1964D5AF215B30AF000E14D9 /* YBWalletSQManager.swift */; };
 		197B94DC215A317D00A97FAF /* YBSQModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B94DB215A317D00A97FAF /* YBSQModel.swift */; };
-		197B94DE215A319C00A97FAF /* YBSQLiteDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B94DD215A319C00A97FAF /* YBSQLiteDataBase.swift */; };
 		19DCB45A215252EE00E4ACB0 /* YBGroupButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCB459215252EE00E4ACB0 /* YBGroupButton.swift */; };
 		19DCB45C215253C200E4ACB0 /* YBMnemonicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DCB45B215253C200E4ACB0 /* YBMnemonicController.swift */; };
 		7C9A0135DA6957D8B441664E /* Pods_YBWallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2DA76E1186FE267EE6AA3D /* Pods_YBWallet.framework */; };
@@ -181,12 +177,8 @@
 		194EABBD215349E900ED158B /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 		194EABBF21539D4B00ED158B /* YBCreatWalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBCreatWalletController.swift; sourceTree = "<group>"; };
 		194EABC121539E3100ED158B /* YBCreatWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBCreatWalletView.swift; sourceTree = "<group>"; };
-		1964D5A7215B2959000E14D9 /* YBSQLiteDataBaseTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBSQLiteDataBaseTool.swift; sourceTree = "<group>"; };
-		1964D5A9215B2BCD000E14D9 /* YBSQLPropertyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBSQLPropertyModel.swift; sourceTree = "<group>"; };
-		1964D5AA215B2BCE000E14D9 /* YBSQLMirrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBSQLMirrorModel.swift; sourceTree = "<group>"; };
-		1964D5AB215B2BCE000E14D9 /* YBSQLiteModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YBSQLiteModel.swift; sourceTree = "<group>"; };
+		1964D5AF215B30AF000E14D9 /* YBWalletSQManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBWalletSQManager.swift; sourceTree = "<group>"; };
 		197B94DB215A317D00A97FAF /* YBSQModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBSQModel.swift; sourceTree = "<group>"; };
-		197B94DD215A319C00A97FAF /* YBSQLiteDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBSQLiteDataBase.swift; sourceTree = "<group>"; };
 		19DCB459215252EE00E4ACB0 /* YBGroupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBGroupButton.swift; sourceTree = "<group>"; };
 		19DCB45B215253C200E4ACB0 /* YBMnemonicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YBMnemonicController.swift; sourceTree = "<group>"; };
 		45EDA0A9F30268AED81E7838 /* Pods-YBWallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YBWallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YBWallet/Pods-YBWallet.debug.xcconfig"; sourceTree = "<group>"; };
@@ -672,11 +664,7 @@
 		197B94D9215A313E00A97FAF /* YBSQManager */ = {
 			isa = PBXGroup;
 			children = (
-				1964D5AB215B2BCE000E14D9 /* YBSQLiteModel.swift */,
-				1964D5AA215B2BCE000E14D9 /* YBSQLMirrorModel.swift */,
-				1964D5A9215B2BCD000E14D9 /* YBSQLPropertyModel.swift */,
-				197B94DD215A319C00A97FAF /* YBSQLiteDataBase.swift */,
-				1964D5A7215B2959000E14D9 /* YBSQLiteDataBaseTool.swift */,
+				1964D5AF215B30AF000E14D9 /* YBWalletSQManager.swift */,
 			);
 			path = YBSQManager;
 			sourceTree = "<group>";
@@ -920,7 +908,6 @@
 				1919506B215538CA00B1F6F8 /* YBBackupController.swift in Sources */,
 				19279FB0215211B3003F7269 /* YBUserApi.swift in Sources */,
 				19279FC1215211B3003F7269 /* YBBaseViewModel.swift in Sources */,
-				1964D5AE215B2BCE000E14D9 /* YBSQLiteModel.swift in Sources */,
 				19279FC4215211B3003F7269 /* YBCustomNavigatioBarable.swift in Sources */,
 				194EABBE215349E900ED158B /* UIButton-Extension.swift in Sources */,
 				19279FA2215211B3003F7269 /* NSDate-Extension.swift in Sources */,
@@ -938,10 +925,10 @@
 				19279FBC215211B3003F7269 /* YBWallletViewModel.swift in Sources */,
 				19279FC6215211B3003F7269 /* YBWalletBaseModel.swift in Sources */,
 				19279FBF215211B3003F7269 /* YBWalletModel.swift in Sources */,
-				1964D5A8215B2959000E14D9 /* YBSQLiteDataBaseTool.swift in Sources */,
 				19279FAA215211B3003F7269 /* YBAlertView.swift in Sources */,
 				19279F9B215211B3003F7269 /* Bundle-Extension.swift in Sources */,
 				19279FBB215211B3003F7269 /* YBProfileController.swift in Sources */,
+				1964D5B0215B30AF000E14D9 /* YBWalletSQManager.swift in Sources */,
 				19279FAC215211B3003F7269 /* UIImage+ZZYQRCodeImage.swift in Sources */,
 				19279F9A215211B3003F7269 /* UIColor-Extension.swift in Sources */,
 				19279FB5215211B3003F7269 /* YBTableViewable.swift in Sources */,
@@ -949,7 +936,6 @@
 				19279FCE215211B3003F7269 /* YBTextField.swift in Sources */,
 				19279FA3215211B3003F7269 /* MMScanViewController.m in Sources */,
 				194EABBC21533EC700ED158B /* YBBaseView.swift in Sources */,
-				197B94DE215A319C00A97FAF /* YBSQLiteDataBase.swift in Sources */,
 				19279F98215211B3003F7269 /* YBKeyChain-Extension.swift in Sources */,
 				19279FCC215211B3003F7269 /* YBLoginModel.swift in Sources */,
 				19279FAB215211B3003F7269 /* AVCaptureSessionManager.swift in Sources */,
@@ -960,11 +946,9 @@
 				194EABC021539D4B00ED158B /* YBCreatWalletController.swift in Sources */,
 				19279FB6215211B3003F7269 /* YBMnemonicable.swift in Sources */,
 				19279FAE215211B3003F7269 /* YBWalletApi.swift in Sources */,
-				1964D5AD215B2BCE000E14D9 /* YBSQLMirrorModel.swift in Sources */,
 				19279FB1215211B3003F7269 /* YBNetworkURL.swift in Sources */,
 				194EABC221539E3100ED158B /* YBCreatWalletView.swift in Sources */,
 				19279FB3215211B3003F7269 /* YBLog.swift in Sources */,
-				1964D5AC215B2BCE000E14D9 /* YBSQLPropertyModel.swift in Sources */,
 				19279FA0215211B3003F7269 /* Dictionary-Extension.swift in Sources */,
 				194EABBA21533E4500ED158B /* YBWelcomView.swift in Sources */,
 				19279FC7215211B3003F7269 /* YBBaseTableViewCell.swift in Sources */,

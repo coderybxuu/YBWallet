@@ -22,16 +22,15 @@ class YBBackupController: YBBaseViewController {
     
     fileprivate lazy var wordsLable : UILabel = {
         let lable = UILabel()
-//        lable.backgroundColor = UIColor.lightGray
-//        lable.font = UIFont.systemFont(ofSize: 11)
-//        lable.numberOfLines = 0
-//        guard let walletModel = YBSQLiteWalletListsManager.default.search(name: walletName!) else{ return lable}
-//        let text = walletModel.walletAddress
-//        print(text)
-//        lable.text = text
-//        let width = kScreenW-30
-//        let height = text.obtainTextHeight(fixedWidth: width)
-//        lable.frame = CGRect(x: 15, y: titleLable.frame.origin.y + 30, width: width, height: height)
+        lable.backgroundColor = UIColor.lightGray
+        lable.font = UIFont.systemFont(ofSize: 11)
+        lable.numberOfLines = 0
+        guard let walletModel = YBWalletSQManager.shared.search(walletName!) else{ return lable}
+        let text = walletModel.walletMnemonic
+        lable.text = text
+        let width = kScreenW-30
+        let height = text.obtainTextHeight(fixedWidth: width)
+        lable.frame = CGRect(x: 15, y: titleLable.frame.origin.y + 30, width: width, height: height)
         return lable
     }()
     

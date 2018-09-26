@@ -17,6 +17,6 @@ class YBSQWalletListModel{
     var walletPrivatekey : String = ""
     var walletMnemonic : String = ""
     //0未备份   1已经备份
-    var walletIsBackup : String = "0"
+    var walletIsBackup : Bool = false
 
 }

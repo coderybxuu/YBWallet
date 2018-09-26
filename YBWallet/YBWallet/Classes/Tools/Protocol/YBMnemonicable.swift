@@ -52,12 +52,15 @@ extension YBCreatWalletable{
         let privateKey = privateKey_HD.description
         let address = privateKey_HD.publicKey(for: .ethereum).address.description
         let walletModel = YBSQWalletListModel.init()
+        
+        walletModel.walletPwd = passphrase
         walletModel.walletName = name
         walletModel.walletIsBackup = false
         walletModel.walletPrivatekey = privateKey
         walletModel.walletMnemonic = mnemonic
         walletModel.walletAddress = address
-        YBSQLiteWalletListsManager.default.insert(item: walletModel)
+        
+        YBWalletSQManager.shared.insert(walletModel)
+        
     }
-    
 }
