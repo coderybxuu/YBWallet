@@ -7,28 +7,42 @@
 //
 
 import UIKit
-import SnapKit
 
 class YBBackupController: YBBaseViewController {
 
-    ///备份钱包
-    fileprivate lazy var backupWalletBtn : UIButton = {
-        let backupWalletBtn = UIButton(title: "备份钱包")
-        backupWalletBtn.addTarget(self, action: #selector(backupWallet), for: .touchUpInside)
-        return backupWalletBtn
+    ///钱包名称
+    var walletName : String?
+    fileprivate lazy var titleLable : UILabel = {
+        let lable = UILabel(frame: CGRect(origin: CGPoint(x: 0, y: current_h(height: 80)), size: CGSize(width: kScreenW, height: 15)))
+        lable.textAlignment = .center
+        lable.font = UIFont.systemFont(ofSize: 15)
+        lable.text = "抄写您的助记词，存放到安全的地方"
+        return lable
     }()
+    
+    fileprivate lazy var wordsLable : UILabel = {
+        let lable = UILabel()
+//        lable.backgroundColor = UIColor.lightGray
+//        lable.font = UIFont.systemFont(ofSize: 11)
+//        lable.numberOfLines = 0
+//        guard let walletModel = YBSQLiteWalletListsManager.default.search(name: walletName!) else{ return lable}
+//        let text = walletModel.walletAddress
+//        print(text)
+//        lable.text = text
+//        let width = kScreenW-30
+//        let height = text.obtainTextHeight(fixedWidth: width)
+//        lable.frame = CGRect(x: 15, y: titleLable.frame.origin.y + 30, width: width, height: height)
+        return lable
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(backupWalletBtn)
-        backupWalletBtn.snp.makeConstraints { (make) in
-            make.size.equalTo(CGSize(width: kScreenW - 100, height: 30))
-            make.center.equalTo(self.view)
-        }
+        title = "备份助记词"
+        view.addSubview(titleLable)
+        view.addSubview(wordsLable)
     }
 }
 
 extension YBBackupController{
-    @objc func backupWallet() {
-        
-    }
+   
 }

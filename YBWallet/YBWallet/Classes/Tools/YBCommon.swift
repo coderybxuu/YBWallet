@@ -66,7 +66,8 @@ func current_h(height:CGFloat) -> CGFloat {
     return height / 667.0 * kScreenH
 }
 
-
+//数据库表名
+let kWalletListsSqlTableName = "kWalletListsSqlTableName"
 //临时
 let imageName = ""
 

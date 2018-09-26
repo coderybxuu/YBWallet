@@ -15,8 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,Mnemonicable{
         
         //网络监控
         YBReachability.shared().monitorNet()
-        //监测本地生成了钱包助记词
-        verification()
         window = UIWindow()
         window?.rootViewController = YBCustomNavigationController(rootViewController: YBWelcomController())
         window?.makeKeyAndVisible()

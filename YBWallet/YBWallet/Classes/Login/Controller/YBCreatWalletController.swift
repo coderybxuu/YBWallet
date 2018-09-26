@@ -37,14 +37,50 @@ extension YBCreatWalletController:YBCreatWalletViewable,YBCreatWalletable{
         }
         
         //判断钱包是否存在（）
-        if let _ = YBSQLiteWalletListsManager.default.search(name: walletName)
-        {
-                window?.makeToast("此钱包已经存在"); return
-            
+        let walletModel = YBSQWalletListModel.init()
+        walletModel.walletName = walletName
+
+        let results = SQLiteDataBase.shared.select_wrapper_model(walletModel, fromTable: kWalletListsSqlTableName)
+        print(results)
+        
+        if results.count > 0 {
+            window?.makeToast("此钱包已经存在"); return
         }else{
             //创建钱包
             creatWallet(pwd, name: walletName)
-            navigationController?.pushViewController(YBBackupController(), animated: true)
+            let appearance = YBAlertView.YBAppearance(
+                showCloseButton: false //不显示关闭按钮
+            )
+            let alert = YBAlertView(appearance: appearance)
+            alert.addButton("备份钱包") {
+                let vc = YBBackupController()
+                vc.walletName = walletName
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            alert.showSuccess("新钱包创建完成",subTitle: "请备份钱包，防止钱包丢失对您造成损失")
         }
+        
+        
+        
+        
+//        if let results = SQLiteDataBase.shared.select(fromTable: kWalletListsSqlTableName)
+//        {
+//            print(model.walletAddress)
+//                window?.makeToast("此钱包已经存在"); return
+//
+//        }else{
+//            //创建钱包
+//            creatWallet(pwd, name: walletName)
+//            let appearance = YBAlertView.YBAppearance(
+//                showCloseButton: false //不显示关闭按钮
+//            )
+//            let alert = YBAlertView(appearance: appearance)
+//            alert.addButton("备份钱包") {
+//                let vc = YBBackupController()
+//                vc.walletName = walletName
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//            alert.showSuccess("新钱包创建完成",subTitle: "请备份钱包，防止钱包丢失对您造成损失")
+//        }
     }
 }
